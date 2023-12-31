@@ -14,6 +14,15 @@ void decimalToHexChar(unsigned char zero_to_255, char* input, size_t at, size_t 
 	}
 }
 
+unsigned char checksum(unsigned char* code_without_ending_checksum, input_size){
+	 //= { 0x04,0x02,0x0E,0x00, 0x48, 0x64, 0x00, 0x00 };
+	int sum = 0;
+	for (int i = 0; i < input_size; i++) {
+		sum += code_without_ending_checksum[i];
+	}
+
+	return ((~sum + 1) & 0xFF)
+}
 
 int main()
 {
